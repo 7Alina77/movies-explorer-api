@@ -12,8 +12,7 @@ const UnauthorizedError = require('../errors/UnauthorizedError');
 const { SECRET_JWT_KEY = 'SECRET_JWT_KEY' } = process.env;
 
 module.exports.getMe = (req, res, next) => {
-  console.log(req.user);
-  User.findById(req.user._id)
+  User.findById(req.user.id)
     .then((user) => {
       if (!user) {
         throw new NotFoundError('Такого пользователя не существует');
@@ -47,7 +46,7 @@ module.exports.createUser = (req, res, next) => {
 
 module.exports.updateUser = (req, res, next) => {
   const { name , email} = req.body;
-  User.findByIdAndUpdate(req.user._id, { name, email }, { runValidators: true, new: true })
+  User.findByIdAndUpdate(req.user.id, { name, email }, { runValidators: true, new: true })
     .then((user) => {
       if (!user) {
         throw new NotFoundError('Такого пользователя нет');
@@ -82,4 +81,8 @@ module.exports.login = (req, res, next) => {
       }
       next(err);
     });
+};
+
+module.exports.logout = (_, res) => {
+  res.clearCookie('jwt').send({ message: 'Вы вышли из профиля' });
 };

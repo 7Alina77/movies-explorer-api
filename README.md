@@ -10,4 +10,4 @@
 
 Ссылка на репо: https://github.com/7Alina77/movies-explorer-api
 Ссылка на IP: 
-IP 
+IP 158.160.73.34

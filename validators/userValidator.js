@@ -1,6 +1,4 @@
 const { celebrate, Joi } = require('celebrate');
-const { regExLink } = require('../utils/constants');
-
 
 module.exports.validateUser = celebrate({
   body: Joi.object().keys({

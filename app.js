@@ -11,10 +11,10 @@ const { handleErrors } = require('./errors/handleErrors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const app = express();
-const { PORT = 3000 } = process.env;
+const { PORT = 3000, NODE_ENV, PRODUCTION_URL } = process.env;
 // const { PORT = 3002 } = process.env;
 
-mongoose.connect('mongodb://127.0.0.1:27017/bitfilmsdb');
+mongoose.connect(NODE_ENV === 'production' ? PRODUCTION_URL : 'mongodb://127.0.0.1:27017/bitfilmsdb');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -35,6 +35,4 @@ app.use(errorLogger);
 app.use(errors());
 app.use(handleErrors);
 
-app.listen(PORT, () => {
-  console.log(`App listening on port ${PORT}`);
-});
+app.listen(PORT);

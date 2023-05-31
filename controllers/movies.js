@@ -13,7 +13,7 @@ module.exports.getMovies = (req, res, next) => {
     .then((movies) => res.send(movies))
     .catch((err) => {
       if (err instanceof NotFoundError) {
-        next(new NotFoundError('Фильмы не найдены'))
+        next(new NotFoundError('Фильмы не найдены'));
       } else {
         next(err);
       }
@@ -22,7 +22,8 @@ module.exports.getMovies = (req, res, next) => {
 
 module.exports.createMovie = (req, res, next) => {
   const ownerId = req.user.id;
-  const { country,
+  const {
+    country,
     director,
     duration,
     year,
@@ -34,7 +35,8 @@ module.exports.createMovie = (req, res, next) => {
     nameRU,
     nameEN,
   } = req.body;
-  Movie.create({ country,
+  Movie.create({
+    country,
     director,
     duration,
     year,
@@ -45,7 +47,8 @@ module.exports.createMovie = (req, res, next) => {
     movieId,
     nameRU,
     nameEN,
-    owner: ownerId })
+    owner: ownerId,
+  })
     .then((movie) => movie.populate('owner'))
     .then((movie) => res.status(HTTP_STATUS_CREATED).send(movie))
     .catch((err) => {

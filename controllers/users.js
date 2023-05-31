@@ -45,7 +45,7 @@ module.exports.createUser = (req, res, next) => {
 };
 
 module.exports.updateUser = (req, res, next) => {
-  const { name , email} = req.body;
+  const { name, email } = req.body;
   User.findByIdAndUpdate(req.user.id, { name, email }, { runValidators: true, new: true })
     .then((user) => {
       if (!user) {

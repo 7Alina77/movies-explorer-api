@@ -9,5 +9,5 @@
 ## Расположение проекта
 
 Ссылка на репо: https://github.com/7Alina77/movies-explorer-api
-Ссылка на IP: 
+Ссылка на IP: http://api.alina-movies-dipl.nomoredomains.rocks
 IP 158.160.73.34

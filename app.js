@@ -23,7 +23,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 const corsAllowed = {
-  origin: ['http://localhost:3000/', 'http://alina-movies-dipl.nomoredomains.rocks/', 'https://alina-movies-dipl.nomoredomains.rocks/'],
+  origin: ['http://localhost:3000', 'http://localhost:3001', 'http://127.0.0.1:3000', 'http://127.0.0.1:3001', 'http://alina-movies-dipl.nomoredomains.rocks/', 'https://alina-movies-dipl.nomoredomains.rocks/'],
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
   allowedHeaders: ['Content-Type', 'Authorization'],
   preflightContinue: false,

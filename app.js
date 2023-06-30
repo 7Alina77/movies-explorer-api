@@ -23,7 +23,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 const corsAllowed = {
-  origin: ['http://localhost:3000', 'http://localhost:3002'],
+  origin: ['localhost:3000', 'localhost:3002'],
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
   allowedHeaders: ['Content-Type', 'Authorization'],
   preflightContinue: false,

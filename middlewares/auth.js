@@ -5,7 +5,7 @@ const UnauthorizedError = require('../errors/UnauthorizedError');
 
 module.exports = (req, res, next) => {
   if (req.headers.authorization === undefined) {
-    return next(new UnauthorizedError('Авторизуйтесь'));
+    return next(new UnauthorizedError('Ошибка до токена'));
   }
   const token = req.headers.authorization.replace('Bearer ', ''); // || req.cookies.jwt;
   let payload;

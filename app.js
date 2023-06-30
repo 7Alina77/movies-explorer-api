@@ -12,9 +12,9 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { DB, PROD_MODE, PORT_DEFAULT } = require('./utils/config');
 
 const app = express();
-// const { PORT = 3000, NODE_ENV, PRODUCTION_URL } = process.env;
-const { NODE_ENV, PRODUCTION_URL } = process.env;
-const { PORT = 3002 } = process.env;
+const { PORT = 3000, NODE_ENV, PRODUCTION_URL } = process.env;
+// const { NODE_ENV, PRODUCTION_URL } = process.env;
+// const { PORT = 3002 } = process.env;
 
 mongoose.connect(NODE_ENV === PROD_MODE ? PRODUCTION_URL : DB);
 
@@ -23,7 +23,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 const corsAllowed = {
-  origin: ['localhost:3000', 'localhost:3002'],
+  origin: ['localhost:3000', 'localhost:3002', 'http://alina-movies-dipl.nomoredomains.rocks', 'https://alina-movies-dipl.nomoredomains.rocks/'],
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
   allowedHeaders: ['Content-Type', 'Authorization'],
   preflightContinue: false,

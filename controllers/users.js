@@ -51,7 +51,10 @@ module.exports.updateUser = (req, res, next) => {
       if (!user) {
         throw new NotFoundError('Такого пользователя нет');
       } else {
-        return res.send(user);
+        return res.send({
+          name: user.name,
+          email: user.email,
+        });
       }
     })
     .catch((err) => {
@@ -71,7 +74,8 @@ module.exports.login = (req, res, next) => {
       res.cookie('jwt', token, {
         maxAge: 36000000,
         httpOnly: true,
-        sameSite: true,
+        sameSite: 'none',
+        secure: true,
       })
         .send({ token });
     })
@@ -83,6 +87,6 @@ module.exports.login = (req, res, next) => {
     });
 };
 
-module.exports.logout = (_, res) => {
+module.exports.logout = (req, res) => {
   res.clearCookie('jwt').send({ message: 'Вы вышли из профиля' });
 };

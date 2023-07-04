@@ -8,9 +8,10 @@ module.exports = (req, res, next) => {
     return next(new UnauthorizedError('Ошибка до токена'));
   }
   const token = req.headers.authorization.replace('Bearer ', '') || req.cookies.jwt;
+  console.log(token);
   let payload;
   try {
-    payload = jwt.verify(token, NODE_ENV === 'production' ? SECRET_JWT_KEY : 'DEV_SECRET_KEY');
+    payload = jwt.verify(token, NODE_ENV === 'production' ? SECRET_JWT_KEY : 'SECRET_JWT_KEY');
   } catch (err) {
     return next(new UnauthorizedError('Авторизуйтесь'));
   }
